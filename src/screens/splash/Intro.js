@@ -10,7 +10,7 @@ import Indicator from '../../components/Indicator';
 
 const Intro = ({navigation}) => {
   setTimeout(async () => {
-    navigation.replace('HomeScreen');
+    navigation.replace('LoginScreen');
   }, 2700);
 
   return (

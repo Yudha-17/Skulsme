@@ -2,6 +2,7 @@ import React from 'react';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Intro from '../screens/splash/Intro';
 import BottomRouter from './BottomRouter';
+import Login from '../screens/login/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -11,6 +12,11 @@ const Router = () => {
       <Stack.Screen
         name="IntroScreen"
         component={Intro}
+        options={{headerShown: false}}
+      />
+      <Stack.Screen
+        name="LoginScreen"
+        component={Login}
         options={{headerShown: false}}
       />
       <Stack.Screen

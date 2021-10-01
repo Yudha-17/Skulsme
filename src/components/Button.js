@@ -2,19 +2,22 @@ import React from 'react';
 import {
   StyleSheet, Text, TouchableOpacity,
 } from 'react-native';
-import { colorLoading, colorPrimary } from '../styles/Colors';
+import {colorLoading, colorPrimary} from '../styles/Colors';
 
 const Button = (props) => {
   if (props.isLoading) {
     return (
-      <TouchableOpacity style={{ ...styles.buttonLoading, ...props.style }}>
+      <TouchableOpacity style={{...styles.buttonLoading, ...props.style}}>
         <Text style={styles.text}>Sedang diproses...</Text>
       </TouchableOpacity>
     );
   }
 
   return (
-    <TouchableOpacity style={{ ...styles.button, ...props.style }} onPress={props.onPress}>
+    <TouchableOpacity
+      style={{...styles.button, ...props.style}}
+      onPress={props.onPress}
+    >
       <Text style={styles.text}>{props.title}</Text>
     </TouchableOpacity>
   );

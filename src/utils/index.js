@@ -27,9 +27,17 @@ const showSuccess = (message) => {
 };
 
 const showError = (message) => {
-  showError({
+  showMessage({
     message,
     type: 'danger',
+    animationDuration: 300,
+  });
+};
+
+const showInfo = (message) => {
+  showMessage({
+    message,
+    type: 'info',
     animationDuration: 300,
   });
 };
@@ -39,4 +47,5 @@ export {
   ASSet,
   showSuccess,
   showError,
+  showInfo,
 };
