@@ -3,7 +3,8 @@ import {
   StyleSheet, Text, TextInput, View,
 } from 'react-native';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
-import {colorInputBlack, colorLabel, colorPrimary} from '../styles/Colors';
+import FEIcon from 'react-native-vector-icons/Feather';
+import {colorInputBlack, colorInputFocus, colorLabel, colorPrimary} from '../styles/Colors';
 import Gap from './Gap';
 
 const Input = ({
@@ -11,7 +12,7 @@ const Input = ({
 }) => {
   const [border, setBorder] = useState(colorInputBlack);
   const onFocusForm = () => {
-    setBorder(colorLabel);
+    setBorder(colorInputFocus);
   };
   const onBlurForm = () => {
     setBorder(colorInputBlack);
@@ -21,6 +22,10 @@ const Input = ({
     <View style={styles.container}>
       <Text style={styles.label}>{label}</Text>
       <View style={styles.content}>
+        {
+          icon ? <FAIcon name={icon} size={26} color={colorPrimary} /> : null
+        }
+        <Gap width={7} />
         <TextInput
           onFocus={onFocusForm}
           onBlur={onBlurForm}
@@ -29,11 +34,6 @@ const Input = ({
           value={value}
           onChangeText={onChangeText}
         />
-        <Gap width={7} />
-        {
-          icon ? <FAIcon name={icon} size={26} color={colorPrimary} /> : null
-        }
-
       </View>
     </View>
   );
@@ -43,7 +43,7 @@ export default Input;
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '95%',
   },
   content: {
     flexDirection: 'row',
@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.5,
     borderColor: border,
     borderRadius: 7,
-    width: '97%',
+    width: '94%',
   }),
   label: {
     fontSize: 16,

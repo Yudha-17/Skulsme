@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {
-  Alert, Image, SafeAreaView, StyleSheet, Text, TouchableOpacity, View,
+  Alert, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View,
 } from 'react-native';
 import axios from 'axios';
 import FAIcon from 'react-native-vector-icons/FontAwesome';
@@ -41,75 +41,87 @@ const Login = ({navigation}) => {
         })
         .finally(() => {
           setIsLoading(false);
-          showSuccess('Login Berhasil');
         });
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <Gap height={80} />
-      <Image
-        source={require('../../assets/images/usu.png')}
-        style={styles.image}
-      />
-      <Gap height={5} />
-      <View style={{flexDirection: 'row'}}>
-        <Text style={styles.title}>
-          {APP_NAME}
-          {' '}
-        </Text>
-        <FAIcon name="copyright" size={15} />
-      </View>
-      <Gap height={70} />
-      <Input
-        label="Username"
-        icon="user"
-        value={userName}
-        onChangeText={(value) => {
-          setUserName(value);
-        }}
-      />
-      <Gap height={20} />
-      <Input
-        label="Password"
-        icon="lock"
-        secureTextEntry
-        value={password}
-        onChangeText={(value) => {
-          setPassword(value);
-        }}
-      />
-      <Gap height={20} />
-      <Button
-        title="LOGIN"
-        isLoading={isLoading}
-        onPress={login}
-      />
-      <Gap height={15} />
-      <TouchableOpacity onPress={() => {
-        Alert.alert('Informasi Login',
-            'Untuk informasi lebih lanjut, hubungi kami');
-      }}
-      >
-        <Text style={styles.label}>Butuh bantuan login?</Text>
-      </TouchableOpacity>
-      <Gap height={20} />
-      <Text>
+    <ScrollView style={styles.scroll}>
+      <SafeAreaView style={styles.container}>
+        <Gap height={80} />
+        <Image
+          source={require('../../assets/images/usu.png')}
+          style={styles.image}
+        />
+        <Gap height={5} />
+        <View style={{flexDirection: 'row'}}>
+          <Text style={styles.title}>
+            {APP_NAME}
+            {' '}
+          </Text>
+          <FAIcon name="copyright" size={15} />
+        </View>
+        <Gap height={70} />
+        <Input
+          label="Username"
+          icon="user"
+          value={userName}
+          onChangeText={(value) => {
+            setUserName(value);
+          }}
+        />
+        <Gap height={20} />
+        <Input
+          label="Password"
+          icon="lock"
+          secureTextEntry
+          value={password}
+          onChangeText={(value) => {
+            setPassword(value);
+          }}
+        />
+        <Gap height={20} />
+        <Button
+          title="LOGIN"
+          isLoading={isLoading}
+          onPress={login}
+        />
+        <Gap height={15} />
+        <View style={styles.option}>
+          <TouchableOpacity onPress={() => {
+            navigation.navigate('RegistrationScreen');
+          }}
+          >
+            <Text style={styles.label}>Belum punya Akun?</Text>
+          </TouchableOpacity>
+          <Gap width={15} />
+          <TouchableOpacity onPress={() => {
+            Alert.alert('Informasi Login',
+                'Untuk informasi lebih lanjut, hubungi kami');
+          }}
+          >
+            <Text style={styles.label}>Butuh bantuan login?</Text>
+          </TouchableOpacity>
+        </View>
+        <Gap height={20} />
+        <Text>
         Versi
-        {' '}
-        {APP_VERSION}
-      </Text>
-    </SafeAreaView>
+          {' '}
+          {APP_VERSION}
+        </Text>
+      </SafeAreaView>
+    </ScrollView>
   );
 };
 
 export default Login;
 
 const styles = StyleSheet.create({
-  container: {
+  scroll: {
     flex: 1,
-    alignItems: 'center',
     backgroundColor: colorTheme,
+  },
+  container: {
+    alignItems: 'center',
   },
   image: {
     width: 128,
@@ -120,6 +132,10 @@ const styles = StyleSheet.create({
   label: {
     fontSize: 13,
     color: colorInputBlack,
+  },
+  option: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   title: {
     fontSize: 26,
